@@ -29,6 +29,7 @@ void numberAtten() // rellenar
 void menuClient() // faltan opciones del menu por duda con el taller(opciones pendientes)
 {   
     cout<<"--------------------------------"<<endl;
+    cout<<endl;
     cout<<"Bienvenido al sistem de atencion para clientes"<<endl;
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Entregar Numero de Atencion"<<endl;
@@ -59,6 +60,7 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
 void menuSales() //(opciones pendientes)
 {
     cout<<"--------------------------------"<<endl;
+    cout<<endl;
     cout<<"Bienvenido al sistema de ventas"<<endl;
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Agregar  Producto a Bodega"<<endl;
@@ -92,6 +94,7 @@ void startmenu() // inicia el menu del programa
     do{
 
         cout<<"**************************************"<<endl;
+        cout<<endl;
         cout<<"Ingrese una opcion, ¿Desea ver ventas o atender clientes?: "<<endl;
         cout<<"1) Clientes"<<endl;
         cout<<"2) Ventas"<<endl;

@@ -29,8 +29,16 @@ void startmenu() // inicia el menu del programa
 
 
 
-        if(opt == "1"){menuClient();}
-        else if(opt == "2"){menuSales();}
+        if(opt == "1")
+        {
+            menuClient();
+            break;
+        }
+        else if(opt == "2")
+        {
+            menuSales(); 
+            break;
+        }
         else if(opt == "3"){ 
             cout<< "Tenga buen dia. ¡Adios!"<<endl;}
         else{

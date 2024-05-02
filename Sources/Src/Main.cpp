@@ -23,6 +23,7 @@ void startmenu() // inicia el menu del programa
         cout<<"1) Cliente"<<endl;
         cout<<"2) Trabajador"<<endl;
         cout<<"3) Salir"<<endl;
+        cout<<endl;
         cout<<"**************************************"<<endl;
         cout<<">"; cin>>opt; cout<<endl;
 
@@ -38,7 +39,7 @@ void startmenu() // inicia el menu del programa
         }
 
     }
-    while(opt != "");
+    while(opt != "3");
 }// fin startmenu
 
 int main()

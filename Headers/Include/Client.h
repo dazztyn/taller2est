@@ -7,20 +7,24 @@ using namespace std;
 class Client
 {
     private: // atributos
-        string TypeClient;
         int NumAttention;
+        string NameClient,TypeClient,Details;
+        
     public: // metodos
-        Client(string, int); //constructor
+        Client(int,string,string,string); //constructor
         ~Client(); //destructor
 
         //getters y setters
-        string getTypeClient();
         int getNumAttention();
-        void setTypeClient(string);
+        string getNameClient();
+        string getTypeClient();
+        string getDetails();
         void setNumAttention(int);
+        void setNameClient(string);
+        void setTypeClient(string);
+        void setDetails(string);
 
         string toString();
-
 
 };
 

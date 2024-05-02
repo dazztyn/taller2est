@@ -3,68 +3,67 @@
 
 using namespace std;
 
-Product::Product(string Catego, string Subcate, string IdProd, string NameProd, double PriceProd)
+Product::Product(int IdProd, string NameProd, string Catego, string Subcate, int PriceProd, int Quantity)
 {
-    this->Category = Catego;
-    this->Subcategory = Subcate;
     this->IdProd = IdProd;
     this->NameProd = NameProd;
+    this->Category = Catego;
+    this->Subcategory = Subcate;
     this->PriceProd = PriceProd;
+    this->QuantityStore = Quantity;
 
 }
 
 Product::~Product(){}; // destructor
 
     //getters y setters
-string Product::getCategProd()
-{
-    return this->Category;
-}
-
-void Product::setCategoProd(string categoProd)
-{
-    this->Category = categoProd;
-}
-
-string Product::getSubcate()
-{
-    return this->Subcategory;
-}
-
-void Product::setSubcate(string Subcate)
-{
-    this->Subcategory = Subcate;
-}
-
-string Product::getIdProd()
+int Product::getIdProd()
 {
     return this->IdProd;
+ 
 }
-
-void Product::setIdProd(string Idprod)
-{
-    this->IdProd = Idprod;
-}
-
 string Product::getNameProd()
 {
     return this->NameProd;
 }
-
-void Product::setNameProd(string NameProd)
+string Product::getCategProd()
 {
-    this->NameProd = NameProd;
+    return this->Category;
 }
-
-double Product::getPriceProd()
+string Product::getSubcate()
+{
+    return this->Subcategory;
+}
+int Product::getPriceProd()
 {
     return this->PriceProd;
 }
-
-void Product::setPriceProd(double PriceProd)
+int Product::getQuantity()
 {
-    this->PriceProd = PriceProd;
+    return this->QuantityStore;
 }
 
-
-
+void Product::setIDProd(int Idprod)
+{
+    this->IdProd = Idprod;
+}
+void Product::setNameProd(string Namep)
+{
+    this->NameProd = Namep;
+}
+void Product::setCategProd(string Cate)
+{
+    this->Category = Cate;
+}
+void Product::setSubcate(string Subc)
+{
+    this->Subcategory = Subc;
+}
+void Product::setPriceProd(int Pricep)
+{
+    this->PriceProd = Pricep;
+}
+void Product::setQuantity(int Quanti)
+{
+    this->QuantityStore = Quanti;
+}

@@ -6,26 +6,34 @@ using namespace std;
 class Product
 {
     private: // atributos
-        string Category, Subcategory, IdProd, NameProd; // duda con atributos
-        double PriceProd;
+        int IdProd;
+        string NameProd, Category, Subcategory; // duda con atributos
+        int PriceProd, QuantityStore;
+
         
     public: // metodos
-        Product(string, string, string, string, double); //constructor
+        Product(int, string, string, string, int, int); //constructor
         ~Product(); //destructor
 
-        //getters y setters
+        //getters
+        int getIdProd();
+        string getNameProd();
         string getCategProd();
         string getSubcate();
-        string getIdProd();
-        string getNameProd();
-        double getPriceProd();
-        void setCategoProd(string);
-        void setSubcate(string);
-        void setIdProd(string);
+        int getPriceProd();
+        int getQuantity();
+        void setIDProd(int);
         void setNameProd(string);
-        void setPriceProd(double);
+        void setCategProd(string);
+        void setSubcate(string);
+        void setPriceProd(int);
+        void setQuantity(int);
+
+    
         
         string toString();
+
+        void substractQuantity(int);
 
 
 };

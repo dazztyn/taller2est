@@ -52,6 +52,11 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     }
     else if (opt == "3")
     {
+        cout<< "Saliendo..."<<endl;
+        return;
+    }
+    else
+    {
         cout<< "Opcion invalida. Saliendo..."<<endl;
         return;
     }
@@ -83,6 +88,11 @@ void menuSales() //(opciones pendientes)
         salesTicket(); //solicita la boleta de venta (lista enlazada de producto con cliente)
     }
     else if (opt == "3")
+    {
+        cout<< "Saliendo..."<<endl;
+        return;
+    }
+    else
     {
         cout<< "Opcion invalida. Saliendo..."<<endl;
         return;

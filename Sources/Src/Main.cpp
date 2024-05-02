@@ -4,7 +4,7 @@
 using namespace std;
 
 
-void addProd() // rellenar
+void addProd() // rellenar (Puede que se necesite crear otro objeto (Farmacia))
 {
     cout<<"Producto Agregado a la bodega"<<endl;
     cout<<endl;

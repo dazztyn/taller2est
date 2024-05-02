@@ -34,6 +34,7 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Entregar Numero de Atencion"<<endl;
     cout<<"2) Llamar al siguiente Cliente"<<endl;
+    cout<<"3) Salir"<<endl;
     cout<<endl;
     cout<<"--------------------------------"<<endl;
     cout<<">";
@@ -49,7 +50,7 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     {
         callNext(); // cola de prioridad para el cliente (por preferencia)
     }
-    else
+    else if (opt == "3")
     {
         cout<< "Opcion invalida. Saliendo..."<<endl;
         return;
@@ -65,6 +66,7 @@ void menuSales() //(opciones pendientes)
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Agregar  Producto a Bodega"<<endl;
     cout<<"2) Generar Boleta de Venta"<<endl;
+    cout<<"3) Salir"<<endl;
     cout<<endl;
     cout<<"--------------------------------"<<endl;
     cout<<">";
@@ -80,7 +82,7 @@ void menuSales() //(opciones pendientes)
     {
         salesTicket(); //solicita la boleta de venta (lista enlazada de producto con cliente)
     }
-    else
+    else if (opt == "3")
     {
         cout<< "Opcion invalida. Saliendo..."<<endl;
         return;

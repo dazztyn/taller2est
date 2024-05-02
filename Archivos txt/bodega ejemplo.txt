@@ -1,0 +1,29 @@
+Categoría: Medicamentos
+  Sub-categoría: Analgésicos
+    ID: 001, Nombre: Paracetamol, Precio: $5000
+    ID: 002, Nombre: Ibuprofeno, Precio: $3500
+    ID: 003, Nombre: Ácido acetilsalicílico, Precio: $4600
+  Sub-categoría: Antibióticos
+    ID: 004, Nombre: Amoxicilina, Precio: $3700
+    ID: 005, Nombre: Azitromicina, Precio: $2400
+Categoría: Cuidado personal
+  Sub-categoría: Higiene bucal
+    ID: 006, Nombre: Pasta dental, Precio: $3500
+    ID: 007, Nombre: Cepillo de dientes, Precio: $3000
+  Sub-categoría: Cuidado de la piel
+    ID: 008, Nombre: Crema hidratante, Precio: $8500
+    ID: 009, Nombre: Protector solar, Precio: $6700
+Categoría: Vitaminas y suplementos
+  Sub-categoría: Vitaminas
+    ID: 010, Nombre: Vitamina C, Precio: $3650
+    ID: 011, Nombre: Vitamina D, Precio: $5450
+  Sub-categoría: Suplementos dietéticos
+    ID: 012, Nombre: Omega 3, Precio: $12500
+    ID: 013, Nombre: Proteína en polvo, Precio: $15000
+Categoría: Primeros auxilios
+  Sub-categoría: Vendajes y apósitos
+    ID: 014, Nombre: Vendaje adhesivo, Precio: $4500
+    ID: 015, Nombre: Gasas estériles, Precio: $3400
+  Sub-categoría: Desinfectantes
+    ID: 016, Nombre: Alcohol isopropílico, Precio: $2500
+    ID: 017, Nombre: Agua oxigenada, Precio: $3150

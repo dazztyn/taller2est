@@ -7,20 +7,24 @@ using namespace std;
 void addProd() // rellenar
 {
     cout<<"Producto Agregado a la bodega"<<endl;
+    cout<<endl;
 }
 
 void salesTicket() // rellenar
 {
     cout<<"Generando boleta..."<<endl;
+    cout<<endl;
 }
 
 void callNext() //rellenar
 {
-    cout<<"Siguiente Porfavor!"<<endl; 
+    cout<<"Siguiente Porfavor!"<<endl;
+    cout<<endl;
 }
 void numberAtten() // rellenar
 {
     cout<<"Numero dado"<<endl; // rellenar
+    cout<<endl;
 }
 void menuClient() // faltan opciones del menu por duda con el taller(opciones pendientes)
 {   
@@ -29,6 +33,8 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Entregar Numero de Atencion"<<endl;
     cout<<"2) Llamar al siguiente Cliente"<<endl;
+    cout<<endl;
+    cout<<"--------------------------------"<<endl;
     cout<<">";
 
     string opt;
@@ -57,6 +63,8 @@ void menuSales() //(opciones pendientes)
     cout<<"Escoja una opcion: "<<endl;
     cout<<"1) Agregar  Producto a Bodega"<<endl;
     cout<<"2) Generar Boleta de Venta"<<endl;
+    cout<<endl;
+    cout<<"--------------------------------"<<endl;
     cout<<">";
 
     string opt;

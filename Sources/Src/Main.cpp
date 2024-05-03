@@ -140,7 +140,7 @@ void startmenu() // inicia el menu del programa
 
 int main()
 {
-
+    cout << "jaja dou" << endl;
     startmenu();
     return 0;
 }

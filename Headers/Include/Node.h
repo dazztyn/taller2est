@@ -2,7 +2,7 @@
 using namespace std;
 class Node
 {
-    public:
+    public: // duda struct o class para nodo (clase arraigada a posible cambio y eliminacion posterior aclaracion de dudas)
         int value;
         Node* next;
 

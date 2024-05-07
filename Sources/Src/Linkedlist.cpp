@@ -51,3 +51,42 @@ Node* Linkedlist::SearchValue(int value)
     }
     return nullptr;
 }
+
+void Linkedlist::DeleteValue(int value)
+{
+    Node* valueDel = SearchValue(value);
+    Node* valuePrev = head;
+
+    if(valueDel == nullptr)
+    {
+        cout<<"el dato que desea eliminar no existe"<<endl;
+        return;
+    }
+    if(valueDel == head)
+    {
+        head = valueDel->next;
+    }
+    else
+    {
+        while(valuePrev->next != valueDel)
+        {
+            valuePrev = valuePrev->next;
+        }
+        valuePrev->next = valueDel->next;
+    }
+
+    delete valueDel;
+}
+
+
+void Linkedlist::print()
+{
+    Node* currentNode = head;
+    while(currentNode != nullptr)
+    {
+        cout<<currentNode->value<<endl;
+        currentNode = currentNode->next;
+    }
+    cout<< "nullptr" <<endl;
+    
+}

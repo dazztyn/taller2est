@@ -12,7 +12,6 @@ class Linkedlist
         ~Linkedlist(); // destructor
         //metodos
         void addValue(int); //agrega el valor ingresado por parametro a la lista
-        
         Node* SearchValue(int); //busca el valor ingresado en la lista enlazada
         void DeleteValue(int); //elimina el valor ingresado en la lista 
         void print(); //imprime los valores que contiene la lista

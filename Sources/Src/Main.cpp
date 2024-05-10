@@ -1,5 +1,9 @@
-#include<iostream>
-
+#include <iostream>
+#include <stack>
+#include <queue>
+#include <stdlib.h>
+#include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -140,7 +144,6 @@ void startmenu() // inicia el menu del programa
 
 int main()
 {
-    cout << "jaja dou" << endl;
     startmenu();
     return 0;
 }

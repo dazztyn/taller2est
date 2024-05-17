@@ -17,8 +17,8 @@ class Client
         //getters y setters
         int getNumAttention();
         string getNameClient();
-        string getTypeClient();
-        string getDetails();
+        string getTypeClient(); //quiza eliminar? -> herencia
+        string getDetails(); //quiza eliminar? -> herencia
         void setNumAttention(int);
         void setNameClient(string);
         void setTypeClient(string);

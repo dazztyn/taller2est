@@ -4,9 +4,11 @@
 #include <stdlib.h>
 #include <fstream>
 #include <sstream>
-
+#include "Client.h"
 using namespace std;
 
+queue<Client> clients;
+queue<Client> priorityClients;
 
 void addProd() // rellenar (Puede que se necesite crear otro objeto (Farmacia))
 {

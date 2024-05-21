@@ -1,0 +1,30 @@
+Sanitario,Aerosol,Lysoform,6990,10001,12
+Sanitario,Aerosol,Desodorante Ambiental,4990,10002,10
+Sanitario,Aerosol,Bloqueador Solar,4500,10003,20
+Sanitario,Químico,Repelente de Insectos,5100,10004,15
+Sanitario,Químico,Antigrasa,4200,10005,12
+Santiario,Químico,Limpiavidrios,4600,10006,8
+Alimenticio,Dietético,Barra de Proteína,2500,10007,30
+Alimenticio,Dietético,Suplemento en Polvo,23990,10008,30
+Alimenticio,Dietético,Aceite de Coco,8990,10009,20
+Alimenticio,Hidratante,Bebida Isotónica,3500,10010,20
+Alimenticio,Hidratante,Bebida Energética,3700,10011,30
+Alimenticio,Hidratante,Agua Mineral,800,10012,50
+Medicamento,Comprimido,Paracetamol,4000,10013,50
+Medicamento,Comprimido,Citrato de Magnesio,6990,10014,30
+Medicamento,Comprimido,Ketorolaco,4990,10015,35
+Medicamento,Inyectable,Suero Hidratante,2100,10016,10
+Medicamento,Inyectable,Neurobionta,4000,10017,5
+Medicamento,Inyectable,Furosemida,1000,10018,5
+Para Bebé,Higiene,Pack Pañales,36990,10019,10
+Para Bebé,Higiene,Toallitas,3990,10020,15
+Para Bebé,Higiene,Kit de Aseo,14990,10021,4
+Para Bebé,Accesorios,Chupete,3500,10022,8
+Para Bebé,Accesorios,Juguete,6990,10023,12
+Para Bebé,Accesorios,Andador,39990,10024,2
+Cosmético,Cabello,Tinte de Cabello,1890,10025,15
+Cosmético,Cabello,Acondicionador,4990,10026,15
+Cosmético,Cabello,Shampoo,3990,10027,15
+Cosmético,Facial,Mascarilla Quirúrgica,100,10028,300
+Cosmético,Facial,Crema Hidratante,2500,10029,5
+Cosmético,Facial,Máscara Facial,3500,10030,5

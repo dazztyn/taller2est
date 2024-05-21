@@ -5,12 +5,11 @@ using namespace std;
 
 class PriorityClient : public Client{
 private:
-    string priorityType;
+    string condition;
 
 public:
-    PriorityClient(int,string,string,string,string);
+    PriorityClient(int,string,int,string);
     ~PriorityClient();
 
-    string getPriorityType();
-    void setPriorityType(string);
+    string getCondition();
 };

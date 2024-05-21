@@ -1,2 +1,0 @@
-001,paracetamol,Medicamentos,Analgesicos,2500,100
-002,ibuprofeno,Medicamentos,Analgesicos,5000,150 (Rellenar para abajo (id, nombre producto, categoria, subcategoria, valorProducto, cantidadEnBodega))

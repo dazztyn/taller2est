@@ -3,11 +3,12 @@
 
 using namespace std;
 
-Client::Client(int numAttention, string name, int age)//Constructor
+Client::Client(int numAttention, string name, int age,string condition)//Constructor
 {   
     this -> numAttention = numAttention;
     this -> name = name;
     this -> age = age;
+    this -> condition = condition;
 }
 
 Client::~Client(){}; // destructor
@@ -24,6 +25,12 @@ string Client::getName()
 int Client::getAge()
 {
     return this -> age;
+}
+void Client::setNumAttention(int num){
+    this -> numAttention = num;
+}
+string Client::getCondition(){
+    return this -> condition;
 }
 
 

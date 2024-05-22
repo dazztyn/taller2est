@@ -16,6 +16,7 @@
 
 using namespace std;
 
+queue<Client*> fullClientQueue;
 queue<Client*> clients;
 queue<Client*> preferentialClients;
 
@@ -40,18 +41,17 @@ void loadClients(){
     while(getline(file,line)){
 
         vector<string> parts = splitLine(line,split);
-        int numAttention = stoi(parts[0]);
         string name = parts[1];
         int age = stoi(parts[2]);
         string condition = parts[3];
 
         if(condition == "Ninguna"){
-            Client* c = new AverageClient(numAttention,name,age,condition);
-            clients.push(c);
+            Client* c = new AverageClient(-1,name,age,condition);
+            fullClientQueue.push(c);
         }
         else{
-            Client* c = new PriorityClient(numAttention,name,age,condition);
-            preferentialClients.push(c);
+            Client* c = new PriorityClient(-1,name,age,condition);
+            fullClientQueue.push(c);
         }
     }
 
@@ -103,24 +103,84 @@ void salesTicket() // rellenar
     cout<<endl;
 }
 
+void sortClients(){ //se reordenan los clientes por tipo de fila
+
+    if(fullClientQueue.empty()){
+        cout << "La fila ya está dividida" << endl;
+    }
+
+    else{
+        while(!fullClientQueue.empty()){
+            Client* actual = fullClientQueue.front();
+            if(actual -> getCondition() == "Ninguna"){ //si no tiene condicion
+                clients.push(actual);
+                fullClientQueue.pop();
+            }
+            else{ //si es embarazada, 3ra edad o discapacitado
+                preferentialClients.push(actual);
+                fullClientQueue.pop();
+            }
+        }
+    }
+
+}//fin sortClients
+
 void callNext() //rellenar
 {
+    sortClients();
+
+    while(!preferentialClients.empty()){ //se atiende primero a los preferenciales
+
+    Client* actualPref = preferentialClients.front();
+
+    
+
+
+    }
+
     cout<<"Siguiente Porfavor!"<<endl;
     cout<<endl;
 }
-void numberAtten() // rellenar
+
+void numberAtten() // le asigna los numeros de atencion a los clientes en la fila
 {
-    cout<<"Numero dado"<<endl; // rellenar
-    cout<<endl;
+    if(fullClientQueue.empty()){
+        cout << "La fila esta vacia." << endl;
+        return;
+    }
+
+    queue<Client*> aux;
+    int numAttention = 0;
+
+    while(!fullClientQueue.empty()){
+        Client* actualClient = fullClientQueue.front();
+        fullClientQueue.pop();
+        actualClient -> setNumAttention(++numAttention);
+        cout<<"Numero asignado para "<<actualClient -> getName() << ": " << numAttention << endl;
+        aux.push(actualClient);
+    }
+    while(!aux.empty()){
+        Client* actualClient = aux.front();
+        aux.pop();
+        fullClientQueue.push(actualClient);
+    }
+    cout << "Numeros asignados. Saliendo..." <<endl;
+
 }
+
+void newClient(){
+
+}
+
 void menuClient() // faltan opciones del menu por duda con el taller(opciones pendientes)
 {   
     cout<<"--------------------------------"<<endl;
     cout<<"Atención al Cliente"<<endl; cout<<endl;
     cout<<"Ingrese Opcion: "<<endl;
-    cout<<"1) Entregar numero de atencion"<<endl;
+    cout<<"1) Entregar numeros de atencion"<<endl;
     cout<<"2) Llamar siguiente cliente"<<endl;
-    cout<<"3) Salir"<<endl;
+    cout<<"3) Ingresar nuevo cliente."<<endl;
+    cout<<"4) Salir"<<endl;
     cout<<"--------------------------------"<<endl;
     cout<<">";
 
@@ -134,6 +194,10 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
         callNext(); // cola de prioridad para el cliente (por preferencia)
     }
     else if (opt == "3")
+    {
+        //newClient();
+    }
+    else if (opt == "4")
     {
         cout<< "Saliendo..."<<endl;
         return;

@@ -9,17 +9,20 @@ class Client
         int numAttention;
         string name;
         int age;
+        string condition;
         
     public: // metodos
-        Client(int,string,int); //constructor
+        Client(int,string,int,string); //constructor
         ~Client(); //destructor
 
         //getters
-        int getNumAttention();
-        string getName();
-        int getAge();
+        virtual int getNumAttention();
+        virtual string getName();
+        virtual int getAge();
+        virtual string getCondition();
+        virtual void setNumAttention(int);
 
-        string toString(); //para modificar txt (?)
+        virtual string toString(); //para modificar txt (?)
 
 };
 

@@ -49,6 +49,7 @@ void HashMap::rehash() { //duplica el tamaño de la tabla hash en caso de que se
 }
 
 void HashMap::insert(int key, Product* value) {
+
     int index = hashFunction(key);
     Node* newNode = new Node(key, value);
 
@@ -59,13 +60,13 @@ void HashMap::insert(int key, Product* value) {
     else 
     {
         Node* prev = nullptr;
-        Node* curr = table[index];
-        while (curr != nullptr) 
+        Node* actualNode = table[index];
+        while (actualNode != nullptr) 
         {
-            prev = curr;
-            curr = curr->next;
+            prev = actualNode;
+            actualNode = actualNode -> next;
         }
-        prev->next = newNode;
+        prev -> next = newNode;
     }
 
     double loadFactor = (double) getNumberOfElements() / tableSize;
@@ -122,6 +123,7 @@ void HashMap::erase(int key)
 int HashMap::getNumberOfElements() 
 {
     int count = 0;
+    
     for (int i = 0; i < tableSize; i++) 
     {
         Node* actualNode = table[i];

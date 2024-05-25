@@ -1,9 +1,9 @@
 #include <iostream>
-#include <stdlib.h> //lib standar
-#include <fstream> //lectura de archivos
-#include <sstream> //lectura de archivos
-#include <queue>
-#include <vector>
+#include <stdlib.h>
+#include <fstream> 
+#include <sstream>
+#include <queue> 
+#include <vector> 
 #include "Client.h"
 #include "AverageClient.h"
 #include "PriorityClient.h"
@@ -13,15 +13,16 @@
 #include "BabyProd.h"
 #include "CosmeticProd.h"
 #include "Medicine.h"
+#include "HashMap.h"
 
 using namespace std;
 
 queue<Client*> fullClientQueue;
 queue<Client*> clients;
 queue<Client*> preferentialClients;
+HashMap products;
 
-vector <string> splitLine(string str, char chr){
-
+vector <string> splitLine(string str, char chr){//divide la linea en partes usando el char ',' y retorna un vector de strings que son las partes
     vector<string> parts;
     stringstream ss(str);
     string part;
@@ -32,7 +33,7 @@ vector <string> splitLine(string str, char chr){
     return parts;
 }//fin splitLine
 
-void loadClients(){
+void loadClients(){ //lee el archivo de clientes
 
     string line;
     ifstream file ("Clients.txt");
@@ -41,9 +42,9 @@ void loadClients(){
     while(getline(file,line)){
 
         vector<string> parts = splitLine(line,split);
-        string name = parts[1];
-        int age = stoi(parts[2]);
-        string condition = parts[3];
+        string name = parts[0];
+        int age = stoi(parts[1]);
+        string condition = parts[2];
 
         if(condition == "Ninguna"){
             Client* c = new AverageClient(-1,name,age,condition);
@@ -57,7 +58,7 @@ void loadClients(){
 
 }//fin loadClients
 
-void loadProducts(){
+void loadProducts(){ //lee el archivo de productos
 
     string line;
     ifstream file("Bodega.txt");

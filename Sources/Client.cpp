@@ -33,6 +33,10 @@ string Client::getCondition(){
     return this -> condition;
 }
 
+string Client::toString(){
+    return "esto es un to string";
+}
+
 
 
 

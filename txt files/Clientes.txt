@@ -1,14 +1,14 @@
-5,Carlos Peña,20,Discapacitado
-4,Javier Catalan,20,Ninguna
-6,Michelle Bachelet,72,Tercera Edad
-1,Adrian Elgueta,20,Ninguna
-7,Manuel Jerez,20,Discapacitado
-2,Papi Micky,43,Discapacitado
-3,Pablo Jorquera,20,Ninguna
-8,Maximiliano Araya,75,Tercera Edad
-12,Jessica Drew,27,Embarazada
-9,Benjamin Miranda,21,Discapacitado
-10,Donovan Almendares,21,Ninguna
-11,Jolyne Kujo,19,Ninguna
-14,Vicente Machuca,20,Ninguna
-13,Cristofer Romo,80,Tercera Edad
+Carlos Peña,20,Discapacitado
+Javier Catalan,20,Ninguna
+Michelle Bachelet,72,Tercera Edad
+Adrian Elgueta,20,Ninguna
+Manuel Jerez,20,Discapacitado
+Papi Micky,43,Discapacitado
+Pablo Jorquera,20,Ninguna
+Maximiliano Araya,75,Tercera Edad
+Jessica Drew,27,Embarazada
+Benjamin Miranda,21,Discapacitado
+Donovan Almendares,21,Ninguna
+Jolyne Kujo,19,Ninguna
+Vicente Machuca,20,Ninguna
+Cristofer Romo,80,Tercera Edad

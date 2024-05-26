@@ -27,6 +27,6 @@ public:
     bool displayProducts(string);
     void erase(int key);
     int getAmountOfElements();
-
+    string writeProducts();
     void displayAllProducts();
 };

@@ -240,7 +240,7 @@ void giveNumbers() // le asigna los numeros de atencion a los clientes en la fil
     queue<Client*> aux;
     int numAttention = 0;
 
-    while(!fullClientQueue.empty()){
+    while(!fullClientQueue.empty()){  //se asigna un numero
         Client* actualClient = fullClientQueue.front();
         actualClient -> setNumAttention(++numAttention);
         cout<<"Numero asignado para "<<actualClient -> getName() << ": " << numAttention << endl;
@@ -342,7 +342,7 @@ void callNextClient() { //llama a los, clientes sin discapacidades
     }
 }
 
-void menuClient() // faltan opciones del menu por duda con el taller(opciones pendientes)
+void menuClient() // menu de atencion al cliente
 {   
     cout<<"--------------------------------"<<endl;
     cout<<"Atención al Cliente"<<endl; cout<<endl;
@@ -365,7 +365,7 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     
 }// fin menuClient
 
-void menuSales() //(opciones pendientes)
+void menuSales() //menu de gestion de ventas
 {
     cout<<"--------------------------------"<<endl;
     cout<<"Gestion de Ventas."<<endl; cout<<endl;
@@ -392,6 +392,24 @@ void menuSales() //(opciones pendientes)
     }
 }
 
+void saveProducts(){
+
+    ofstream file("Bodega.txt");
+
+    if(!file.is_open()){ //control de error
+        cout << "error guardando cambios en bodega"<<endl;
+        return;
+    }
+
+    string txt = storage ->writeProducts();
+    
+    file << txt;
+
+    file.close();
+    cout << "datos de productos guardados" << endl;
+
+}
+
 void startmenu() // inicia el menu del programa
 {
     string opt;
@@ -407,8 +425,12 @@ void startmenu() // inicia el menu del programa
 
         if(opt == "1") {menuClient(); } //menu gestion clientes
         else if(opt == "2"){ menuSales(); }//menu gestion ventas
-        else if(opt == "3"){ cout<< "Tenga buen dia. ¡Adios!"<<endl; }
 
+        else if(opt == "3"){
+            saveProducts();
+            cout<< "Tenga buen dia. ¡Adios!"<<endl;
+
+        }
         else{
             cout<<"Opcion incorrecta! porfavor ingrese una opcion valida"<<endl;
             cin.clear();
@@ -417,7 +439,7 @@ void startmenu() // inicia el menu del programa
     while(opt != "3");
 }// fin startmenu
 
-int main()
+int main() //main
 {
     //aqui van las funciones de lectura de archivos
     loadClients(); loadProducts();

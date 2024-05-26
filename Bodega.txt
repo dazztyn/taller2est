@@ -27,4 +27,4 @@ Cosmético,Cabello,Acondicionador,4990,10026,15
 Cosmético,Cabello,Shampoo,3990,10027,15
 Cosmético,Facial,Mascarilla Quirúrgica,100,10028,300
 Cosmético,Facial,Crema Hidratante,2500,10029,5
-Cosmético,Facial,Máscara Facial,3500,10030,5
+Cosmético,Facial,Máscara Facial,3500,10030,50

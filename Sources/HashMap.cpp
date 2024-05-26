@@ -185,6 +185,30 @@ void HashMap::displayAllProducts(){
             actualNode = actualNode -> next;
             }
         }
+}
 
+string HashMap::writeProducts(){
 
+    string str;
+
+    for(int i = 0; i < tableSize; ++i){
+        Node* actualNode = table[i];
+        while (actualNode != nullptr){
+        Product* product = actualNode->value;
+
+            string category = product -> getCategory();
+            string sub = product -> getSubcategory();
+            string prod = product -> getProductName();
+            int price = product -> getPrice();
+            int ID = product -> getID();
+            int stock = product -> getStock();
+
+            str += category + "," + sub + "," + prod + ",";
+            str += to_string(price) + "," + to_string(ID) + "," + to_string(stock) + "\n";
+
+            actualNode = actualNode->next;
+        }
+    }
+
+    return str;
 }

@@ -7,14 +7,14 @@ Ticket::Ticket(int total){
     this -> total = total;
 }
 
-void Ticket::addProductsToTicket(vector<Product*> productList){
+void Ticket::addProductsToTicket(vector<Product*> productList){ //recibe el carrito y agrega los productos a la lista de la bvoleta
 
     for(Product* p : productList){
         this -> products.push_back(p);
     }
 }
 
-void Ticket::displayTicketInfo(){
+void Ticket::displayTicketInfo(){ //despliega la info de cada boleta
 
     if(this -> products.size() == 0) { 
         cout << "Boleta vacia" <<endl;

@@ -103,10 +103,14 @@ void reStock(){ //permite reponer las unidades de un producto en la tabla hash
 
 }//fin restock
 
-void salesTicket() // rellenar
+void salesTicket() // despliega las boletas de las ventas
 {
-    cout<<"Generando boleta..."<<endl;
-    cout<<endl;
+    cout<<"Desplegando boletas..."<<endl;
+    cout << endl;
+
+    for(Ticket* t : tickets){
+        t -> displayTicketInfo();
+    }
 }
 
 void sortClients(){ //se reordenan los clientes por tipo de fila
@@ -131,7 +135,7 @@ void sortClients(){ //se reordenan los clientes por tipo de fila
 
 }//fin sortClients
 
-void addProduct(int productID, vector<Product*> cart, int amount) { //agrega el producto comprado al carrito
+void addProduct(int productID, vector<Product*> &cart, int amount) { //agrega el producto comprado al carrito
 
     Product* product = storage -> get(productID); //se busca la id del producto usando la llave (de mismo numero)
 
@@ -210,15 +214,20 @@ void startSale(){ //despliega el catalogo de productos y procesa las ventas
         cout << ">"; cin >> amount; cout << endl;
     }
     
-
-    int subtotal = 0;
-    for(Product* p: cart){
-        subtotal += p -> getPrice();
+    if (cart.empty()) {
+        cout << "El carrito está vacío. No se generará ninguna boleta." << endl;
+        return;
     }
+    else{
+        int subtotal = 0;
+        for(Product* p: cart){
+            subtotal += p -> getPrice();
+        }
 
-    Ticket* ticket = new Ticket(subtotal); //se genera una boleta
-    tickets.push_back(ticket);
-
+        Ticket* ticket = new Ticket(subtotal); //se genera una boleta
+        ticket -> addProductsToTicket(cart);
+        tickets.push_back(ticket);
+    }
 }
 
 void giveNumbers() // le asigna los numeros de atencion a los clientes en la fila
@@ -288,6 +297,7 @@ void callNextPref(){ //se llama a los clientes de la fila preferencial
         cout << endl;
         startSale();
         cout << "Venta finalizada, se ha registrado la boleta. Siguiente!" << endl;
+        cout << endl;
         thirdAges.pop(); //se avanza al siguiente
     }
 
@@ -389,8 +399,8 @@ void startmenu() // inicia el menu del programa
     do{
         cout<<"**************************************"<<endl; cout<<endl;
         cout<<"Ingrese Opcion: "<<endl;
-        cout<<"1) Gestionar clientes."<<endl;
-        cout<<"2) Gestionar ventas."<<endl;
+        cout<<"1) Atención al Cliente."<<endl;
+        cout<<"2) Gestionar Farmacia."<<endl;
         cout<<"3) Salir."<<endl;
         cout<<endl; cout<<"**************************************"<<endl;
         cout<<">"; cin>>opt; cout<<endl;

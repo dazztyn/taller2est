@@ -10,7 +10,6 @@ private:
 
 public:
     Ticket(int);
-
-    void fillTicket(vector<Product*>);
+    void addProductsToTicket(vector<Product*>);
     void displayTicketInfo();
 };

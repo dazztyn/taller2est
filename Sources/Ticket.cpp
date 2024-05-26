@@ -7,23 +7,30 @@ Ticket::Ticket(int total){
     this -> total = total;
 }
 
-void Ticket::fillTicket(vector<Product*> boughtProducts){
+void Ticket::addProductsToTicket(vector<Product*> productList){
 
-    for(Product* p: boughtProducts){
-
+    for(Product* p : productList){
         this -> products.push_back(p);
     }
-
 }
 
 void Ticket::displayTicketInfo(){
 
-    int count = 0, totalAmount = 0;
-
-    for(Product* p: this -> products){
-        count++;
-        totalAmount += p->getPrice();
+    if(this -> products.size() == 0) { 
+        cout << "Boleta vacia" <<endl;
+        cout << endl;
     }
-
-    cout << "Productos comprados: " << this -> products.size() << "Total: " << this -> total << endl;
+    else{
+        cout << "---------------------------------------" << endl;
+        cout << "        *Recibo de Compra*"<<endl;
+        cout << "Productos comprados: " << this -> products.size() << endl;
+        
+        for(Product* p: this -> products){
+            cout << "-" << p -> getProductName() << endl;
+        }
+        
+        cout<<". Total: &" << this -> total << endl;
+        cout << endl;
+        cout << "---------------------------------------" << endl;
+    }
 }

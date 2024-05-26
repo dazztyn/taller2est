@@ -39,6 +39,8 @@ Product{Categoría:"Cosmético", Subcategoría:"Cabello", Nombre:"Shampoo",Preci
 Product{Categoría:"Cosmético", Subcategoría:"Facial", Nombre:"Mascarilla Quirúrgica",Precio:100,ID:10028,Stock:300}
 Product{Categoría:"Cosmético", Subcategoría:"Facial", Nombre:"Crema Hidratante",Precio:2500,ID:10029,Stock:5}
 Product{Categoría:"Cosmético", Subcategoría:"Facial", Nombre:"Máscara Facial",Precio:3500,ID:10030,Stock:5}
+
+
 Clientes:
 PriorityClient{Nombre:"Carlos Peña", Edad:20, Condicion: "Discapacitado"}
 AverageClient{Nombre:"Javier Catalan", Edad:20, Condicion: "Ninguna"}

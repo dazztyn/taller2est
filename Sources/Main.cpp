@@ -161,7 +161,7 @@ void addProduct(int productID, vector<Product*> &cart, int amount) { //agrega el
 } //fin addProduct
 
 bool selectCategory(){ //permite seleccionar una categoria de producto para filtrar busqueda
-
+    cout<<"Escoja la categoria del producto"<< endl;
     cout << "1) Sanitario" << endl;
     cout << "2) Alimenticio" << endl;
     cout << "3) Medicamento" << endl;

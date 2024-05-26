@@ -21,10 +21,11 @@ private:
 
 public:
 
-    HashMap(double maxLoadFactor = 0.75);
-    void insert(int key, Product* value);
+    HashMap(double maxLoadFactor = 0.85);
+    void insert(Product* value, int key);
     Product* get(int key);
+    void displayProducts();
     void erase(int key);
-    int getNumberOfElements();
+    int getAmountOfElements();
 
 };

@@ -3,13 +3,14 @@
 
 using namespace std;
 
-Product::Product(string subcategory, string productName, int price,int ID, int Quantity)
+Product::Product(string subcategory, string productName, int price,int ID, int Quantity, string category)
 {
     this -> subcategory = subcategory;
     this -> productName = productName;
     this -> price = price;
     this -> ID = ID;
     this -> stock = Quantity;
+    this -> category = category;
 }
 
 Product::~Product(){}; // destructor
@@ -18,6 +19,10 @@ Product::~Product(){}; // destructor
 string Product::getSubcategory()
 {
     return this -> subcategory;
+}
+string Product::getCategory()
+{
+    return this -> category;
 }
 
 string Product::getProductName()
@@ -38,4 +43,8 @@ int Product::getID()
 int Product::getStock()
 {
     return this -> stock;
+}
+
+void Product::setStock(int amount){
+    this -> stock = amount;
 }

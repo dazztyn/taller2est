@@ -6,10 +6,12 @@
 
 using namespace std;
 
-HashMap::HashMap(double maxLoadFactor) {
+HashMap::HashMap(double maxLoadFactor) { // constructor
+
     this -> tableSize = 1000; //tamaño de la
     this -> maxLoadFactor = maxLoadFactor; //factor de carga
     table.resize(tableSize, nullptr); //nuevo tamaño 
+
 }
 
 void HashMap::rehash() { //duplica el tamaño de la tabla hash en caso de que se acabe el espacio y reinserta los elementos
@@ -48,31 +50,30 @@ void HashMap::rehash() { //duplica el tamaño de la tabla hash en caso de que se
     tableSize = newTableSize;
 }
 
-void HashMap::insert(int key, Product* value) {
+void HashMap::insert(Product* value, int key) { //inserta un producto a la tabla hash asociandolo con un id "key" y un indice
 
     int index = hashFunction(key);
     Node* newNode = new Node(key, value);
 
-    if (table[index] == nullptr) 
-    {
+    if (table[index] == nullptr) {
         table[index] = newNode;
-    } 
+    }
+
     else 
     {
-        Node* prev = nullptr;
+        Node* previousNode = nullptr;
         Node* actualNode = table[index];
         while (actualNode != nullptr) 
         {
-            prev = actualNode;
+            previousNode = actualNode;
             actualNode = actualNode -> next;
         }
-        prev -> next = newNode;
+        previousNode -> next = newNode;
     }
 
-    double loadFactor = (double) getNumberOfElements() / tableSize;
+    double loadFactor = (double) getAmountOfElements() / tableSize; //se verifica el espacio disponible respecto al factor de carga
 
-    if (loadFactor > maxLoadFactor) 
-    {
+    if (loadFactor > maxLoadFactor) { //si se empieza a llenar la tabla
         rehash();
     }
 }
@@ -84,11 +85,13 @@ Product* HashMap::get(int key)
 
     while (actualNode != nullptr) 
     {
-        if (actualNode->key == key) 
+        if (actualNode -> key == key) 
         {
-            return actualNode->value;
+            return actualNode -> value;
         }
-        actualNode = actualNode->next;
+        else{
+            actualNode = actualNode->next;
+        }
     }
 
     return nullptr;
@@ -120,7 +123,7 @@ void HashMap::erase(int key)
     }
 }
 
-int HashMap::getNumberOfElements() 
+int HashMap::getAmountOfElements() //se obtiene la cantidad de elementos en la tabla para calcular el factor de carga (osea que tan cerca está de llenarse)
 {
     int count = 0;
     
@@ -135,3 +138,22 @@ int HashMap::getNumberOfElements()
     }
     return count;
 }
+
+void HashMap::displayProducts(){ //despliega todos los productos en la tabla
+
+    for (int i = 0; i < tableSize; ++i) {
+        
+        Node* actualNode = table[i];
+        while (actualNode != nullptr) {
+            Product* product = actualNode->value;
+
+            cout << "ID: " << product->getID() << ". Nombre: " << product->getProductName() << ", Precio: " << product->getPrice()
+            << ", Stock: " << product->getStock() << ", Categoría: " << product->getCategory() << ", Subcategoría: " << product->getSubcategory()
+            << endl;
+
+            actualNode = actualNode -> next;
+            }
+        }
+
+}
+

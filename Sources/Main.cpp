@@ -8,19 +8,16 @@
 #include "AverageClient.h"
 #include "PriorityClient.h"
 #include "Product.h"
-#include "SanitaryProd.h"
-#include "NutritionalProd.h"
-#include "BabyProd.h"
-#include "CosmeticProd.h"
-#include "Medicine.h"
 #include "HashMap.h"
+#include "Ticket.h"
 
 using namespace std;
 
 queue<Client*> fullClientQueue;
 queue<Client*> clients;
 queue<Client*> preferentialClients;
-HashMap products;
+HashMap* storage = new HashMap();
+vector<Ticket*> tickets;
 
 vector <string> splitLine(string str, char chr){//divide la linea en partes usando el char ',' y retorna un vector de strings que son las partes
     vector<string> parts;
@@ -36,7 +33,7 @@ vector <string> splitLine(string str, char chr){//divide la linea en partes usan
 void loadClients(){ //lee el archivo de clientes
 
     string line;
-    ifstream file ("Clients.txt");
+    ifstream file ("Clientes.txt");
     char split = ',';
 
     while(getline(file,line)){
@@ -49,10 +46,12 @@ void loadClients(){ //lee el archivo de clientes
         if(condition == "Ninguna"){
             Client* c = new AverageClient(-1,name,age,condition);
             fullClientQueue.push(c);
+            cout << "se agrega a " << name << endl;
         }
         else{
             Client* c = new PriorityClient(-1,name,age,condition);
             fullClientQueue.push(c);
+            cout << "se agrega a " << name << endl;
         }
     }
 
@@ -74,22 +73,11 @@ void loadProducts(){ //lee el archivo de productos
         int ID = stoi(parts[4]);
         int stock = stoi(parts[5]);
 
-        if(category == "Sanitario"){
-            Product* p = new SanitaryProd(subcategory,product,price,ID,stock,category);
-        }
-        else if(category == "Alimenticio"){
-            Product* p = new NutritionalProd(subcategory,product,price,ID,stock,category);
-        }
-        else if(category == "Medicamento"){
-            Product* p = new Medicine(subcategory,product,price,ID,stock,category);
-        }
-        else if(category == "Para Bebe"){
-            Product* p = new BabyProd(subcategory,product,price,ID,stock,category);
-        }
-        else if(category == "Cosmetico"){
-            Product* p = new CosmeticProd(subcategory,product,price,ID,stock,category);
-        }
+        Product* p = new Product(subcategory,product,price,ID,stock,category);
+
+        storage -> insert(p,p -> getID()); //se inserta el producto en la tabla hash de la bodega
     }
+
 }//fin de loadProducts
 
 void addProd() // rellenar (Puede que se necesite crear otro objeto (Farmacia))
@@ -107,7 +95,7 @@ void salesTicket() // rellenar
 void sortClients(){ //se reordenan los clientes por tipo de fila
 
     if(fullClientQueue.empty()){
-        cout << "La fila ya está dividida" << endl;
+        cout << "La fila ya está dividida o no hay clientes." << endl;
     }
 
     else{
@@ -126,27 +114,63 @@ void sortClients(){ //se reordenan los clientes por tipo de fila
 
 }//fin sortClients
 
-void callNext() //rellenar
-{
-    sortClients();
+void addProduct(int productID, vector<Product*> cart, int amount) { //agrega el producto comprado al carrito, usado unicamente para generar boletas
 
-    while(!preferentialClients.empty()){ //se atiende primero a los preferenciales
+    Product* product = storage -> get(productID); //se busca la id del producto usando la llave (de mismo numero)
 
-    Client* actualPref = preferentialClients.front();
+    if (product != nullptr) { //producto encontrado -> se agrega
 
+        if(product -> getStock() > amount){ //hay stock disponible
 
-    
+            product -> setStock(product -> getStock() - amount); //se modifica el stock
 
+            for(int i = 0; i < amount; i++){
+                cart.push_back(product);
+            }
+        }
+    }
+    else {
+        cout << "Producto con ID " << product -> getID() << " no encontrado." << endl; //no encontrado
+    }
+} //fin addProduct
+
+void startSale(){ //despliega el catalogo de productos y procesa las ventas
+
+    vector<Product*> cart;
+    cout << "¿Que va a llevar?" << endl;
+    cout << "Ingrese ID o '-1' para salir." << endl;
+
+    string id, amount;
+
+    cout << ">"; cin >> id; cout << endl;
+    cout << "Cuantas unidades? (ej: 2) " << endl;
+    cout << ">"; cin >> amount; cout << endl;
+
+    while(id != "-1"){
+
+        int idKey = stoi(id); //se castea el cin a int
+        int prodAmount = stoi (amount);
+
+        addProduct(idKey,cart,prodAmount); //se agrega el producto al carrito usando la llave ingresada
+
+        cout << "Ingrese ID o '-1' en ambas opciones para salir." << endl;
+        cout << ">"; cin >> id; cout << endl;
     }
 
-    cout<<"Siguiente Porfavor!"<<endl;
-    cout<<endl;
+    int subtotal = 0;
+    for(Product* p: cart){
+        subtotal += p -> getPrice();
+    }
+
+    Ticket* ticket = new Ticket(subtotal); //se genera una boleta
+    tickets.push_back(ticket);
+
 }
 
-void numberAtten() // le asigna los numeros de atencion a los clientes en la fila
+void giveNumbers() // le asigna los numeros de atencion a los clientes en la fila
 {
     if(fullClientQueue.empty()){
-        cout << "La fila esta vacia." << endl;
+        cout << "La fila esta vacia o no hay clientes." << endl;
         return;
     }
 
@@ -155,23 +179,79 @@ void numberAtten() // le asigna los numeros de atencion a los clientes en la fil
 
     while(!fullClientQueue.empty()){
         Client* actualClient = fullClientQueue.front();
-        fullClientQueue.pop();
         actualClient -> setNumAttention(++numAttention);
         cout<<"Numero asignado para "<<actualClient -> getName() << ": " << numAttention << endl;
         aux.push(actualClient);
+        fullClientQueue.pop();
     }
+
     while(!aux.empty()){
         Client* actualClient = aux.front();
-        aux.pop();
         fullClientQueue.push(actualClient);
+        aux.pop();
     }
-    cout << "Numeros asignados. Saliendo..." <<endl;
+    cout << endl; cout << "Numeros asignados con éxito" <<endl;
 
-}
+}//fin numberAtten
 
-void newClient(){
+void callNextPref(){ //se llama a los clientes de la fila preferencial
 
-}
+    sortClients(); //se reordenan los clientes por tipos de filas
+
+    queue<Client*> thirdAges;
+    queue<Client*> disableds;
+    queue<Client*> pregnants;
+
+    while(!preferentialClients.empty()){ //se separa la cola entre los tipos de preferencial en 3 colas, luego se revisan por prioridad
+
+        Client* actualPref = preferentialClients.front();
+
+        if(actualPref -> getCondition() == "Tercera Edad"){
+            thirdAges.push(actualPref);
+            preferentialClients.pop();
+        }
+        if(actualPref -> getCondition() == "Discapacitado"){
+            disableds.push(actualPref);
+            preferentialClients.pop();
+        }
+        if(actualPref -> getCondition() == "Embarazada"){
+            pregnants.push(actualPref);
+            preferentialClients.pop();
+        }
+
+    }
+
+    storage -> displayProducts();
+    cout << endl;
+
+    while (!thirdAges.empty()){ //se atiende a los de 3ra edad
+
+        Client* actual = thirdAges.front();
+        cout << "Atendiendo a: " << actual -> getName() << endl;
+        startSale();
+        cout << "Venta finalizada, se ha registrado la boleta. Siguiente!" << endl;
+        thirdAges.pop(); //se avanza al siguiente
+    }
+
+    while(!disableds.empty()){ //se atiende a los discapacitados
+        Client* actual = disableds.front();
+        cout << "Atendiendo a: " << actual -> getName() << endl;
+        startSale();
+        cout << "Venta finalizada, se ha registrado la boleta. Siguiente!" << endl;
+        disableds.pop(); //se avanza al siguiente        
+    }
+
+    while(!pregnants.empty()){ //se atiende a las embarazadas
+        Client* actual = pregnants.front();
+        cout << "Atendiendo a: " << actual -> getName() << endl;
+        startSale();
+        cout << "Venta finalizada, se ha registrado la boleta. Siguiente!" << endl;
+        pregnants.pop(); //se avanza al siguiente        
+    }
+
+    cout<<endl;
+
+}//fin de callnextpref
 
 void menuClient() // faltan opciones del menu por duda con el taller(opciones pendientes)
 {   
@@ -180,34 +260,17 @@ void menuClient() // faltan opciones del menu por duda con el taller(opciones pe
     cout<<"Ingrese Opcion: "<<endl;
     cout<<"1) Entregar numeros de atencion"<<endl;
     cout<<"2) Llamar siguiente cliente"<<endl;
-    cout<<"3) Ingresar nuevo cliente."<<endl;
     cout<<"4) Salir"<<endl;
     cout<<"--------------------------------"<<endl;
     cout<<">";
 
     string opt; cin>>opt; cout<<endl;
-    if(opt == "1")
-    {   
-        numberAtten(); //dato int aleatorio referenciado al cliente
-    }
-    else if (opt == "2")
-    {
-        callNext(); // cola de prioridad para el cliente (por preferencia)
-    }
-    else if (opt == "3")
-    {
-        //newClient();
-    }
-    else if (opt == "4")
-    {
-        cout<< "Saliendo..."<<endl;
-        return;
-    }
-    else
-    {
-        cout<< "Opcion invalida. Saliendo..."<<endl;
-        return;
-    }
+
+    if(opt == "1"){giveNumbers();}
+    else if (opt == "2"){ callNextPref();} // cola de prioridad para el cliente (por preferencia)
+
+    else if (opt == "3"){ cout<< "Saliendo..."<<endl; return;}
+    else { cout<< "Opcion invalida. Saliendo..."<<endl; return; }
     
 }// fin menuClient
 
@@ -266,8 +329,7 @@ void startmenu() // inicia el menu del programa
 int main()
 {
     //aqui van las funciones de lectura de archivos
-    loadClients();
-    loadProducts();
-    startmenu();
+    loadClients(); loadProducts();
+    startmenu(); //se inicia el sistema
     return 0;
 }

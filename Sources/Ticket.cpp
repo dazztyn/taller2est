@@ -29,7 +29,7 @@ void Ticket::displayTicketInfo(){
             cout << "-" << p -> getProductName() << endl;
         }
         
-        cout<<". Total: &" << this -> total << endl;
+        cout<<". Total: $" << this -> total << endl;
         cout << endl;
         cout << "---------------------------------------" << endl;
     }

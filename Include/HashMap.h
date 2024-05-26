@@ -28,4 +28,5 @@ public:
     void erase(int key);
     int getAmountOfElements();
 
+    void displayAllProducts();
 };

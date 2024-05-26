@@ -78,11 +78,30 @@ void loadProducts(){ //lee el archivo de productos
 
 }//fin de loadProducts
 
-void addProd() // rellenar (Puede que se necesite crear otro objeto (Farmacia))
-{
-    cout<<"Producto Agregado a la bodega"<<endl;
-    cout<<endl;
-}
+void reStock(){ //permite reponer las unidades de un producto en la tabla hash
+
+    storage -> displayAllProducts();
+    cout << endl;
+    cout << "¿A cual producto desea agregar stock?" << endl;
+
+    string id;
+    cout<<">";cin>>id;cout<<endl;
+
+    int idSelected = stoi(id);
+
+    Product* p = storage -> get(idSelected);
+
+    cout << "Cuantas unidades desea reponer? (ej: 20)" << endl;
+
+    string cant;
+    cout << ">";cin>>cant;cout<<endl;
+    int amount = stoi(cant);
+
+    p -> setStock(p -> getStock() + amount);
+
+    cout << "Se han repuesto " << amount << " unidades de " << p -> getProductName() << ". " << endl;
+
+}//fin restock
 
 void salesTicket() // rellenar
 {
@@ -112,7 +131,7 @@ void sortClients(){ //se reordenan los clientes por tipo de fila
 
 }//fin sortClients
 
-void addProduct(int productID, vector<Product*> cart, int amount) { //agrega el producto comprado al carrito, usado unicamente para generar boletas
+void addProduct(int productID, vector<Product*> cart, int amount) { //agrega el producto comprado al carrito
 
     Product* product = storage -> get(productID); //se busca la id del producto usando la llave (de mismo numero)
 
@@ -137,7 +156,7 @@ void addProduct(int productID, vector<Product*> cart, int amount) { //agrega el 
     }
 } //fin addProduct
 
-bool selectCategory(){
+bool selectCategory(){ //permite seleccionar una categoria de producto para filtrar busqueda
 
     cout << "1) Sanitario" << endl;
     cout << "2) Alimenticio" << endl;
@@ -149,11 +168,12 @@ bool selectCategory(){
     cout << ">"; cin >> opt; cout<<endl; 
 
     return storage -> displayProducts(opt);
-}
+
+}//fin selectCategory
 
 void startSale(){ //despliega el catalogo de productos y procesa las ventas
 
-    bool canBeDisplayed = selectCategory();
+    bool canBeDisplayed = selectCategory(); //se verifica si es una categoria valida
 
     while(!canBeDisplayed){ 
         cout << "Categoría incorrecta, vuelva a intentarlo. "<<endl;
@@ -161,7 +181,8 @@ void startSale(){ //despliega el catalogo de productos y procesa las ventas
     }
 
     cout << endl;
-    vector<Product*> cart;
+    vector<Product*> cart; //se crea el carrito
+
     cout << "¿Que va a llevar?" << endl;
     cout << "Ingrese ID o '-1' para salir." << endl;
 
@@ -346,7 +367,7 @@ void menuSales() //(opciones pendientes)
 
     string opt; cin>>opt; cout<<endl;
 
-    if(opt == "1") { addProd(); } //agrega productos a la lista enlazada (se agrega a bodega)
+    if(opt == "1") { reStock(); } //agrega productos a la lista enlazada (se agrega a bodega)
     else if (opt == "2") { salesTicket(); } //solicita la boleta de venta (lista enlazada de producto con cliente)
 
     else if (opt == "3")

@@ -172,3 +172,19 @@ bool HashMap::displayProducts(string opt){ //despliega todos los productos en la
 
 }
 
+void HashMap::displayAllProducts(){
+
+    for (int i = 0; i < tableSize; ++i) {
+        Node* actualNode = table[i];
+        while (actualNode != nullptr) {
+
+            Product* product = actualNode->value;
+            cout << "ID: " << product->getID() << ". " << product->getProductName() << ", Stock: " << product->getStock() 
+            << ", Categoría: " << product->getCategory() << endl;
+            
+            actualNode = actualNode -> next;
+            }
+        }
+
+
+}

@@ -139,21 +139,36 @@ int HashMap::getAmountOfElements() //se obtiene la cantidad de elementos en la t
     return count;
 }
 
-void HashMap::displayProducts(){ //despliega todos los productos en la tabla
+bool HashMap::displayProducts(string opt){ //despliega todos los productos en la tabla
+
+    string category = "";
+    bool categoryExists = false;
+
+    if(opt == "1") {category = "Sanitario";}
+    else if(opt == "2") {category = "Alimenticio";}
+    else if(opt == "3") {category = "Medicamento";}
+    else if(opt == "4") {category = "Para Bebé";}
+    else if(opt == "5") {category = "Cosmético";}
+
+    int verifier = 0;
 
     for (int i = 0; i < tableSize; ++i) {
-        
         Node* actualNode = table[i];
         while (actualNode != nullptr) {
             Product* product = actualNode->value;
-
-            cout << "ID: " << product->getID() << ". Nombre: " << product->getProductName() << ", Precio: " << product->getPrice()
-            << ", Stock: " << product->getStock() << ", Categoría: " << product->getCategory() << ", Subcategoría: " << product->getSubcategory()
-            << endl;
-
+            
+            if(product -> getCategory() == category){
+                categoryExists = true;
+                cout << "ID: " << product->getID() << ". " << product->getProductName() << ", Precio: $" << product->getPrice()
+                << ", Stock: " << product->getStock() << ", Subcategoría: " << product->getSubcategory()
+                << endl;
+            }
+            
             actualNode = actualNode -> next;
             }
         }
+
+    return categoryExists;
 
 }
 

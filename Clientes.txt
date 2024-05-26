@@ -1,14 +1,8 @@
 Carlos Peña,20,Discapacitado
 Javier Catalan,20,Ninguna
 Michelle Bachelet,72,Tercera Edad
-Adrian Elgueta,20,Ninguna
 Manuel Jerez,20,Discapacitado
-Papi Micky,43,Discapacitado
-Pablo Jorquera,20,Ninguna
-Maximiliano Araya,75,Tercera Edad
-Jessica Drew,27,Embarazada
-Benjamin Miranda,21,Discapacitado
-Donovan Almendares,21,Ninguna
-Jolyne Kujo,19,Ninguna
-Vicente Machuca,20,Ninguna
-Cristofer Romo,80,Tercera Edad
+Papi Micky,43,Ninguna
+Arturo Vallejos,75,Tercera Edad
+Jessica Drew,30,Embarazada
+Hailey Bieber,27,Embarazada

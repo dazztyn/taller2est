@@ -24,7 +24,7 @@ public:
     HashMap(double maxLoadFactor = 0.85);
     void insert(Product* value, int key);
     Product* get(int key);
-    void displayProducts();
+    bool displayProducts(string);
     void erase(int key);
     int getAmountOfElements();
 
